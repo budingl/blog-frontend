@@ -57,7 +57,7 @@ export const PostProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setIsLoading(true);
     setError(null);
     try {
-      const res = await axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}`/api/posts');
+      const res = await axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/posts`);
       setPosts(res.data);
       setLastFetched(Date.now());
     } catch (err: any) {
@@ -95,7 +95,7 @@ export const PostProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setIsLoading(true);
     setError(null);
     try {
-      const res = await axios.post(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}`/api/posts', { title, content }, {
+      const res = await axios.post(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/posts`, { title, content }, {
         headers: {
           Authorization: `Bearer ${token}`
         }
