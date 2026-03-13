@@ -18,57 +18,65 @@ const Register: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-gray-50">
       <Header />
       <main className="flex-grow container mx-auto px-4 py-8">
-        <div className="max-w-md mx-auto bg-white shadow-md rounded-lg p-6">
-          <h1 className="text-2xl font-bold mb-6 text-center">注册</h1>
-          {error && <div className="bg-red-100 text-red-700 p-2 rounded mb-4">{error}</div>}
-          <form onSubmit={handleSubmit}>
-            <div className="mb-4">
-              <label htmlFor="username" className="block text-gray-700 mb-2">用户名</label>
-              <input
-                type="text"
-                id="username"
-                className="w-full px-4 py-2 border border-gray-300 rounded"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                required
-              />
+        <div className="max-w-md mx-auto">
+          <div className="text-center mb-8">
+            <h1 className="text-4xl font-bold mb-2 bg-gradient-to-r from-blue-600 to-purple-600 text-transparent bg-clip-text">
+              注册账号
+            </h1>
+            <p className="text-gray-600">创建新账号，开始您的博客之旅</p>
+          </div>
+          
+          <div className="bg-white shadow-lg rounded-xl p-8 transform transition-all duration-300 hover:shadow-xl">
+            {error && <div className="bg-red-100 text-red-700 p-3 rounded-lg mb-4 animate-fade-in">{error}</div>}
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div>
+                <label htmlFor="username" className="block text-gray-700 font-medium mb-2">用户名</label>
+                <input
+                  type="text"
+                  id="username"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  required
+                />
+              </div>
+              <div>
+                <label htmlFor="email" className="block text-gray-700 font-medium mb-2">邮箱</label>
+                <input
+                  type="email"
+                  id="email"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+              </div>
+              <div>
+                <label htmlFor="password" className="block text-gray-700 font-medium mb-2">密码</label>
+                <input
+                  type="password"
+                  id="password"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                  minLength={6}
+                />
+              </div>
+              <button 
+                type="submit" 
+                className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                disabled={isLoading}
+              >
+                {isLoading ? '注册中...' : '注册'}
+              </button>
+            </form>
+            <div className="mt-6 text-center">
+              <p className="text-gray-600">已有账号？ <Link to="/login" className="text-blue-600 hover:underline font-medium">登录</Link></p>
             </div>
-            <div className="mb-4">
-              <label htmlFor="email" className="block text-gray-700 mb-2">邮箱</label>
-              <input
-                type="email"
-                id="email"
-                className="w-full px-4 py-2 border border-gray-300 rounded"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-            </div>
-            <div className="mb-4">
-              <label htmlFor="password" className="block text-gray-700 mb-2">密码</label>
-              <input
-                type="password"
-                id="password"
-                className="w-full px-4 py-2 border border-gray-300 rounded"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                minLength={6}
-              />
-            </div>
-            <button 
-              type="submit" 
-              className="w-full bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-              disabled={isLoading}
-            >
-              {isLoading ? '注册中...' : '注册'}
-            </button>
-          </form>
-          <div className="mt-4 text-center">
-            <p>已有账号？ <Link to="/login" className="text-blue-500 hover:underline">登录</Link></p>
           </div>
         </div>
       </main>
