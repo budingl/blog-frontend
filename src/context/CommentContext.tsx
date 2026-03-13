@@ -53,7 +53,7 @@ export const CommentProvider: React.FC<{ children: React.ReactNode }> = ({ child
     setIsLoading(true);
     setError(null);
     try {
-      const res = await axios.get(`${process.env.REACT_APP_API_URL || 'http://localhost:5000'}/api/comments/post/${postId}`);
+      const res = await axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/comments/post/${postId}`);
       setComments(res.data);
       setCurrentPostId(postId);
       setLastFetched(Date.now());
@@ -73,7 +73,7 @@ export const CommentProvider: React.FC<{ children: React.ReactNode }> = ({ child
     setIsLoading(true);
     setError(null);
     try {
-      const res = await axios.post('${process.env.REACT_APP_API_URL || 'http://localhost:5000'}/api/comments', { content, post: postId }, {
+      const res = await axios.post(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/comments`, { content, post: postId }, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -95,7 +95,7 @@ export const CommentProvider: React.FC<{ children: React.ReactNode }> = ({ child
     setIsLoading(true);
     setError(null);
     try {
-      await axios.delete(`${process.env.REACT_APP_API_URL || 'http://localhost:5000'}/api/comments/${id}`, {
+      await axios.delete(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/comments/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }

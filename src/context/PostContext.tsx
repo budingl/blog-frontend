@@ -57,7 +57,7 @@ export const PostProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setIsLoading(true);
     setError(null);
     try {
-      const res = await axios.get('${process.env.REACT_APP_API_URL || 'http://localhost:5000'}/api/posts');
+      const res = await axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}`/api/posts');
       setPosts(res.data);
       setLastFetched(Date.now());
     } catch (err: any) {
@@ -77,7 +77,7 @@ export const PostProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setIsLoading(true);
     setError(null);
     try {
-      const res = await axios.get(`${process.env.REACT_APP_API_URL || 'http://localhost:5000'}/api/posts/${id}`);
+      const res = await axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/posts/${id}`);
       setCurrentPost(res.data);
     } catch (err: any) {
       setError(err.response?.data?.message || '获取文章失败');
@@ -95,7 +95,7 @@ export const PostProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setIsLoading(true);
     setError(null);
     try {
-      const res = await axios.post('${process.env.REACT_APP_API_URL || 'http://localhost:5000'}/api/posts', { title, content }, {
+      const res = await axios.post(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}`/api/posts', { title, content }, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -117,7 +117,7 @@ export const PostProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setIsLoading(true);
     setError(null);
     try {
-      const res = await axios.put(`${process.env.REACT_APP_API_URL || 'http://localhost:5000'}/api/posts/${id}`, { title, content }, {
+      const res = await axios.put(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/posts/${id}`, { title, content }, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -140,7 +140,7 @@ export const PostProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setIsLoading(true);
     setError(null);
     try {
-      await axios.delete(`${process.env.REACT_APP_API_URL || 'http://localhost:5000'}/api/posts/${id}`, {
+      await axios.delete(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/posts/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }

@@ -38,7 +38,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const loadUser = async () => {
       if (token) {
         try {
-          const res = await axios.get(`${process.env.REACT_APP_API_URL || 'http://localhost:5000'}/api/auth/me`, {
+          const res = await axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/auth/me`, {
             headers: {
               Authorization: `Bearer ${token}`
             }
@@ -61,14 +61,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setIsLoading(true);
     setError(null);
     try {
-      const res = await axios.post(`${process.env.REACT_APP_API_URL || 'http://localhost:5000'}/api/auth/register`, {
+      const res = await axios.post(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/auth/register`, {
         username, email, password
       });
       const newToken = res.data.token;
       localStorage.setItem('token', newToken);
       setToken(newToken);
       // 获取用户信息
-      const userRes = await axios.get('${process.env.REACT_APP_API_URL || 'http://localhost:5000'}/api/auth/me', {
+      const userRes = await axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}`/api/auth/me', {
         headers: {
           Authorization: `Bearer ${newToken}`
         }
@@ -86,14 +86,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setIsLoading(true);
     setError(null);
     try {
-      const res = await axios.post('${process.env.REACT_APP_API_URL || 'http://localhost:5000'}/api/auth/login', {
+      const res = await axios.post(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}`/api/auth/login', {
         email, password
       });
       const newToken = res.data.token;
       localStorage.setItem('token', newToken);
       setToken(newToken);
       // 获取用户信息
-      const userRes = await axios.get('${process.env.REACT_APP_API_URL || 'http://localhost:5000'}/api/auth/me', {
+      const userRes = await axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}`/api/auth/me', {
         headers: {
           Authorization: `Bearer ${newToken}`
         }
